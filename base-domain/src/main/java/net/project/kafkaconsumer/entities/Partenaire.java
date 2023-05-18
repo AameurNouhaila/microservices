@@ -1,4 +1,4 @@
-package net.project.basedomain.entities;
+package net.project.kafkaconsumer.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

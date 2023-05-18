@@ -1,7 +1,5 @@
 package net.project.kafkaproducer.kafka;
 
-import net.project.basedomain.entities.Client;
-import net.project.basedomain.entities.EntitiesRequest;
 import org.apache.kafka.clients.admin.NewTopic;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,19 +15,19 @@ public class ClientProducer {
 
     private NewTopic topic;
 
-    private KafkaTemplate<String, EntitiesRequest> kafkaTemplate;
+    private KafkaTemplate<String, Object> kafkaTemplate;
 
-    public ClientProducer(NewTopic topic, KafkaTemplate<String, EntitiesRequest> kafkaTemplate) {
+    public ClientProducer(NewTopic topic, KafkaTemplate<String, Object> kafkaTemplate) {
         this.topic = topic;
         this.kafkaTemplate = kafkaTemplate;
     }
 
-    public void sendMessage(EntitiesRequest entitiesRequest){
-        LOGGER.info(String.format("Order event => %s", entitiesRequest.toString()));
+    public void sendMessage(Object object){
+        LOGGER.info(String.format("Order event => %s", object.toString()));
 
         //create message
-        Message<EntitiesRequest> message = MessageBuilder
-                .withPayload(entitiesRequest)
+        Message<Object> message = MessageBuilder
+                .withPayload(object)
                 .setHeader(KafkaHeaders.TOPIC, topic.name())
                 .build();
         kafkaTemplate.send(message);

@@ -1,17 +1,17 @@
-package net.project.basedomain.entities;
+package net.project.kafkaconsumer.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Offre {
+public class Evenement {
     private Long id;
-    private int codeOffre;
-    private int dtyOffre;
-    private String description;
-
+    private Date dateEvent;
+    private Boolean extract;
 
 }
